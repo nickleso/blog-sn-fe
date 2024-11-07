@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Post } from "./types/post";
+import Image from "next/image";
 
 const fetchPosts = async (): Promise<Post[]> => {
   const res = await fetch("http://localhost:4000/api/posts", {
@@ -7,6 +8,7 @@ const fetchPosts = async (): Promise<Post[]> => {
   });
   if (!res.ok) throw new Error("Failed to fetch posts");
   const data = await res.json();
+
   return data.data.posts;
 };
 
@@ -17,10 +19,17 @@ export default async function HomePage() {
     <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       {posts.map((post) => (
         <Link href={`/post/${post._id}`} key={post._id}>
-          <div className="p-4 border rounded-lg shadow hover:shadow-lg transition">
-            <img
-              src={`http://localhost:4000/${post.featureImageUrl}`}
+          <div className="p-4 border rounded-lg shadow hover:shadow-lg transition bg-white">
+            <Image
+              src={
+                post.featureImageUrl
+                  ? `http://localhost:4000/${post.featureImageUrl}`
+                  : "/images/default.jpg"
+              }
               alt={post.title}
+              width={300}
+              height={200}
+              priority={true}
               className="w-full h-40 object-cover rounded-lg"
             />
             <h3 className="text-lg font-semibold mt-2">{post.title}</h3>

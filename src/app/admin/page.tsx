@@ -2,15 +2,21 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Post } from "../types/post";
+import Image from "next/image";
 
 const AdminPage = () => {
   const router = useRouter();
   const [posts, setPosts] = useState<Post[]>([]);
 
   const fetchPosts = async () => {
-    const res = await fetch("http://localhost:4000/api/posts");
-    const data = await res.json();
-    setPosts(data.data.posts);
+    try {
+      const res = await fetch("http://localhost:4000/api/posts");
+      const data = await res.json();
+
+      setPosts(data.data.posts);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const deletePost = async (id: string) => {
@@ -32,10 +38,20 @@ const AdminPage = () => {
       </button>
       <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
-          <div key={post._id} className="p-4 border rounded-lg shadow">
-            <img
-              src={`http://localhost:4000/${post.featureImageUrl}`}
+          <div
+            key={post._id}
+            className="p-4 border rounded-lg shadow  bg-white"
+          >
+            <Image
+              src={
+                post.featureImageUrl
+                  ? `http://localhost:4000/${post.featureImageUrl}`
+                  : "/images/default.jpg"
+              }
               alt={post.title}
+              width={300}
+              height={200}
+              priority={true}
               className="w-full h-40 object-cover rounded-lg"
             />
             <h3 className="text-lg font-semibold mt-2">{post.title}</h3>
