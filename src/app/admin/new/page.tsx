@@ -51,6 +51,7 @@ const NewPostPage = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="w-full border rounded p-2"
+            maxLength={500}
             required
           />
         </div>
@@ -60,6 +61,7 @@ const NewPostPage = () => {
             value={shortDescription}
             onChange={(e) => setShortDescription(e.target.value)}
             className="w-full border rounded p-2"
+            maxLength={4900}
             required
           />
         </div>
@@ -69,6 +71,7 @@ const NewPostPage = () => {
             value={fullDescription}
             onChange={(e) => setFullDescription(e.target.value)}
             className="w-full border rounded p-2"
+            maxLength={4900}
             required
           />
         </div>
