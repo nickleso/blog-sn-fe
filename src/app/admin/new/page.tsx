@@ -74,19 +74,35 @@ const NewPostPage = () => {
         </div>
         <div>
           <label className="block font-medium">Feature Image</label>
-          <input
-            type="file"
-            onChange={(e) => handleFileChange(e, setFeatureImage)}
-            className="w-full border rounded p-2"
-          />
+          <div className="flex items-center space-x-2">
+            <label className="bg-blue-600 text-white rounded px-4 py-2 cursor-pointer hover:bg-blue-700 transition">
+              Choose Feature Image
+              <input
+                type="file"
+                onChange={(e) => handleFileChange(e, setFeatureImage)}
+                className="hidden"
+              />
+            </label>
+            {featureImage && (
+              <span className="text-gray-600">{featureImage.name}</span>
+            )}
+          </div>
         </div>
         <div>
           <label className="block font-medium">Main Image</label>
-          <input
-            type="file"
-            onChange={(e) => handleFileChange(e, setMainImage)}
-            className="w-full border rounded p-2"
-          />
+          <div className="flex items-center space-x-2">
+            <label className="bg-blue-600 text-white rounded px-4 py-2 cursor-pointer hover:bg-blue-700 transition">
+              Choose Main Image
+              <input
+                type="file"
+                onChange={(e) => handleFileChange(e, setMainImage)}
+                className="hidden"
+              />
+            </label>
+            {mainImage && (
+              <span className="text-gray-600">{mainImage.name}</span>
+            )}
+          </div>
         </div>
         <button
           type="submit"

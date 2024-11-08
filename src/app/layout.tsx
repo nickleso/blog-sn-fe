@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <div className=" min-h-screen flex flex-col">
           <Header />
-          <main className="flex-1 container mx-auto pt-4 pb-4">{children}</main>
+          <main className="flex-1 container mx-auto p-4">{children}</main>
         </div>
       </body>
     </html>

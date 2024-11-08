@@ -12,7 +12,7 @@ const fetchPost = async (id: string): Promise<Post> => {
 };
 
 export default async function PostDetailPage({ params }: any) {
-  const { id } = params;
+  const { id } = await params;
   const post = await fetchPost(id);
 
   const sanitizedContent = DOMPurify.sanitize(post.fullDescription || "", {

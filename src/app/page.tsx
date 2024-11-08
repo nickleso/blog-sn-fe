@@ -34,7 +34,7 @@ export default async function HomePage() {
         <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <Link href={`/post/${post._id}`} key={post._id}>
-              <div className="p-4 border rounded-lg shadow hover:shadow-lg transition bg-white">
+              <div className="flex flex-col h-full p-4 border rounded-lg shadow hover:shadow-lg transition bg-white">
                 <Image
                   src={
                     post.featureImageUrl
@@ -48,7 +48,9 @@ export default async function HomePage() {
                   className="w-full h-40 object-cover rounded-lg"
                 />
                 <h3 className="text-lg font-semibold mt-2">{post.title}</h3>
-                <p className="text-gray-600">{post.shortDescription}</p>
+                <p className="text-gray-600 flex-grow">
+                  {post.shortDescription}
+                </p>
               </div>
             </Link>
           ))}
