@@ -2,6 +2,8 @@
 import { useRouter } from "next/navigation";
 import { useState, ChangeEvent, FormEvent } from "react";
 
+const BASE_URL = process.env.NEXT_PUBLIC_SERVER;
+
 const NewPostPage = () => {
   const router = useRouter();
   const [title, setTitle] = useState("");
@@ -30,16 +32,12 @@ const NewPostPage = () => {
     if (featureImage) formData.append("featureImage", featureImage);
     if (mainImage) formData.append("mainImage", mainImage);
 
-    const res = await fetch("http://localhost:4000/api/posts", {
+    const res = await fetch(`${BASE_URL}/api/posts`, {
       method: "POST",
       body: formData,
     });
 
-    if (res.ok) {
-      router.push("/admin");
-    } else {
-      console.error("Failed to create post");
-    }
+    if (res.ok) router.push("/admin");
   };
 
   return (

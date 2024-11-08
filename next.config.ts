@@ -2,11 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["localhost"],
+    domains: ["localhost", "blog-sn-be.onrender.com"],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "localhost",
+        hostname: "blog-sn-be.onrender.com",
         port: "",
         pathname: "uploads",
         search: "",
