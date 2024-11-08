@@ -11,10 +11,6 @@ const fetchPost = async (id: string): Promise<Post> => {
   return data.data;
 };
 
-type PostDetailPageProps = {
-  params: { id: string };
-};
-
 export default async function PostDetailPage({ params }: any) {
   const { id } = params;
   const post = await fetchPost(id);
